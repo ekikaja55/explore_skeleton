@@ -2,7 +2,7 @@
   import { Toast, createToaster } from '@skeletonlabs/skeleton-svelte';
 
   const toaster = createToaster({});
-  
+
   function generatePositiveNumber() {
     return new Promise<number>((resolve, reject) => {
       setTimeout(() => {

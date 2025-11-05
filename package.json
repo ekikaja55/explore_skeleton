@@ -40,6 +40,10 @@
 		"vite": "^7.1.7"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^0.548.0"
+		"@lucide/svelte": "^0.548.0",
+		"embla-carousel-auto-scroll": "^8.6.0",
+		"embla-carousel-autoplay": "^8.6.0",
+		"embla-carousel-svelte": "^8.6.0",
+		"svelte-persisted-store": "^0.12.0"
 	}
 }
