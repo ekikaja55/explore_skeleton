@@ -1,15 +1,19 @@
 <script lang="ts">
 	import '../app.css';
-	import Navbar from '$lib/components/navigations/main/Navbar.svelte';
-	import SidebarMain from '$lib/components/navigations/main/SidebarMain.svelte';
-	import favicon from '$lib/assets/favicon.svg';
-	import { openSidebarMain } from '$lib';
-	import Footer from '../lib/components/navigations/main/Footer.svelte';
+	import { cekPath, openSidebarMain, isDashboard } from '$lib';
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
+	import favicon from '$lib/assets/logoISTTS.png';
+	import Navbar from '$lib/components/navigations/Navbar.svelte';
+	import SidebarMain from '$lib/components/navigations/SidebarMain.svelte';
+	import Footer from '$lib/components/navigations/Footer.svelte';
 	let { children } = $props();
 
-  afterNavigate(()=> openSidebarMain.set(false))
-
+	$effect((): void => {
+		const url: string = page.url.pathname;
+		isDashboard.set(cekPath(url));
+	});
+	afterNavigate(() => openSidebarMain.set(false));
 </script>
 
 <svelte:head>
@@ -20,17 +24,19 @@
 	</script>
 </svelte:head>
 
-<div class="min-h-screen">
+<div class="min-h-screen ">
 	<Navbar />
 
-	<main class="grid min-h-screen min-w-screen grid-cols-[auto_1fr]">
-		{#if $openSidebarMain}
+	<main class="grid min-w-screen grid-cols-[auto_1fr]  ">
+		{#if $openSidebarMain }
 			<SidebarMain />
 		{/if}
 
-		<div class="relative z-10 min-w-screen">
+		<div class="relative z-10 min-w-screen  ">
 			{@render children?.()}
-			<Footer />
+			{#if $isDashboard}
+				<Footer />
+			{/if}
 			{#if $openSidebarMain}
 				<div class="absolute inset-0 z-20 bg-black/80 backdrop-blur-sm lg:hidden"></div>
 			{/if}

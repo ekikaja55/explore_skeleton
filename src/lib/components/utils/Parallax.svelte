@@ -20,7 +20,7 @@
 </script>
 
 <section
-	class="relative flex items-center justify-center overflow-hidden"
+	class="relative flex items-center justify-center overflow-hidden mt-[10vh]"
 	style={`height: ${viewHeight}vh;`}
 >
 	<div

@@ -19,7 +19,7 @@ export type Icon = Component | null;
 
 interface ButtonBase {
 	variant?: Variant;
-	label: string;
+	label?: string;
 	imgSrc?: string | null;
 	icon?: Icon;
 	classCustom?: string | null;

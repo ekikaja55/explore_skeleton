@@ -1,22 +1,24 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import InputForm from '$lib/components/forms/InputForm.svelte';
 	import { colorVariants } from '$lib/utils';
 	import { ArrowRight, CircleCheck, Loader, Sparkles, UserRound } from '@lucide/svelte';
 	import emblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 	import { onMount } from 'svelte';
+	import type { RegisUserDTO, Slide } from '$lib';
 
 	let viewport: HTMLElement;
 	let embla: EmblaCarouselType;
 	let slide = $state(0);
 	let isLoading = $state(false);
 
-	let formData = $state({
-		name: '',
-		phone: ''
+	let formData:RegisUserDTO = $state({
+		user_nama: '',
+		user_notelp: ''
 	});
 
-	const slides = [
+	const slides:Slide[] = [
 		{
 			type: 'intro',
 			title: 'Selamat Datang di Portal Peserta',
@@ -29,19 +31,19 @@
 			desc: 'Pastikan nama yang Anda masukkan valid dan nomor WhatsApp aktif untuk keperluan konfirmasi.',
 			fields: [
 				{
-					key: 'name',
+					key: 'user_nama',
 					label: 'Nama Lengkap',
 					type: 'text',
 					placeholder: 'Masukkan nama lengkap Anda'
 				},
-				{ key: 'phone', label: 'Nomor Telepon (WA)', type: 'tel', placeholder: '08xxxxxxxxxx' }
+				{ key: 'user_notelp', label: 'Nomor Telepon (WA)', type: 'tel', placeholder: '08xxxxxxxxxx' }
 			],
 			button: 'Kirim Data'
 		},
 		{
 			type: 'done',
 			title: 'Terima Kasih!',
-			desc: 'Data Anda telah berhasil disimpan. Selamat datang di komunitas kami!',
+			desc: 'Data Anda telah berhasil disimpan. Silahkan ikuti panduan berikutnya!',
 			button: 'Lanjut ke Dashboard'
 		}
 	];
@@ -51,22 +53,22 @@
 		return () => embla.destroy();
 	});
 
-	function nextSlide() {
+	function nextSlide():void {
 		if (slide < slides.length - 1) {
 			slide++;
 			embla.scrollNext();
 		}
 	}
 
-	function prevSlide() {
+	function prevSlide():void {
 		if (slide > 0) {
 			slide--;
 			embla.scrollPrev();
 		}
 	}
 
-	function handleSubmit() {
-		if (!formData.name.trim() || !formData.phone.trim()) {
+	function handleSubmit():void {
+		if (!formData.user_nama.trim() || !formData.user_notelp.trim()) {
 			alert('Mohon lengkapi data Anda terlebih dahulu.');
 			return;
 		}
@@ -74,13 +76,12 @@
 		nextSlide();
 	}
 
-	async function handleFinish() {
+	async function handleFinish():Promise<void> {
 		isLoading = true;
 		await new Promise((r) => setTimeout(r, 1500));
 		isLoading = false;
-		console.log('Redirect ke /dashboard/peserta');
-		window.location.href = '/dashboard/peserta';
-	}
+    goto('/dashboard/peserta')
+}
 </script>
 
 <div

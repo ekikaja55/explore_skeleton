@@ -1,8 +1,13 @@
 <script lang="ts">
-  export let value: string | number | undefined
-  export let type: 'text' | 'number' | 'password' | 'email' | 'file' = 'text' 
-  export let label: string = 'ini label form'
-  export let classCustom:string = ''
+	import type { Input } from '$lib';
+
+  let {
+    type = "text",
+    label = 'Contoh Label',
+    classCustom,
+    placeholder = 'Contoh Placeholder',
+    value = $bindable()
+  }:Input = $props()
 </script>
 
 <label class={`label flex flex-col gap-1 ${classCustom}`}>
@@ -10,7 +15,7 @@
   <input
     class="input"
     {type}
-    placeholder="Input"
+    {placeholder}
     bind:value
   />
 </label>
