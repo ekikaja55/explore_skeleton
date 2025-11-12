@@ -24,7 +24,6 @@
 	});
 </script>
 
-{#if $messageHandleAuth}
-  
-{/if}
+
 <Button {label} {imgSrc} {variant} onClick={authGoogle} {loading} disabled={loading} {icon} />
+<!-- <Experiment/> -->

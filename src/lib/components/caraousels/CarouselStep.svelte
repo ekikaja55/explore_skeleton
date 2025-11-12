@@ -41,7 +41,7 @@
 			<div class="flex-[0_0_55%] lg:flex-[0_0_50%] min-w-0 w-25 md:w-38 lg:w-auto min-h-50 px-2 ">
 				<div class="mx-auto ">
 					<div
-						class="relative rounded-2xl bg-surface-50 p-8  backdrop-blur-xl dark:bg-surface-900 h-60  lg:-h-auto  "
+						class="relative rounded-2xl bg-gray-700 p-8  backdrop-blur-xl dark:bg-gray-900 h-60  lg:-h-auto  "
 					>
 						<div
 							class="absolute top-0 left-0 h-20 w-25 rounded-tl-2xl border-t-2 border-l-5 border-indigo-500"
@@ -56,10 +56,10 @@
 							class="absolute right-0 bottom-0 h-20 w-20 rounded-br-2xl border-r-2 border-b-5 border-pink-500"
 						></div>
 
-						<div class="relative tracking-wide">
+						<div class="relative tracking-wide text-white">
 							<div
 								class="text-sm md:text-md absolute -top-12 left-0 rounded-full bg-indigo-600 px-6 py-2
-	 font-semibold text-white "
+	 font-semibold  "
 							>
 								Step {i + 1}
 							</div>
@@ -77,6 +77,6 @@
 </div>
 
 <div class="flex gap-6">
-	<Button onClick={() => embla.scrollPrev()} variant="neutral" icon={ArrowLeft} />
-	<Button onClick={() => embla.scrollNext()} variant="neutral" icon={ArrowRight} />
+	<Button onClick={() => embla.scrollPrev()} variant="primary" icon={ArrowLeft} />
+	<Button onClick={() => embla.scrollNext()} variant="primary" icon={ArrowRight} />
 </div>
